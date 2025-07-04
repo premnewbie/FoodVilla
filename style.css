@@ -31,12 +31,13 @@ body {
   font-weight: 600;
   color: wheat;
   font-size: large;
+  padding: 0 10px;
 }
 
 .nav-link:hover {
   text-decoration: underline;
   cursor: pointer;
-  color: darkblue;
+  color: yellow;
 }
 
 .container {
@@ -64,6 +65,13 @@ body {
   object-fit: cover;
   border: 1px solid blue;
   border-radius: 5px 5px 0px 0px;
+}
+
+.simmer{
+  background-color: rgb(190, 188, 188);
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
 }
 
 @media (min-width: 576px) {

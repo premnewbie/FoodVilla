@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StoreContext } from '../../store/Store';
+import { StoreContext } from '../store/Store';
 
 const img_URL = "https://files.yappe.in/place/full/the-food-villa-5873411.webp";
 

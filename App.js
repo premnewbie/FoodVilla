@@ -1,22 +1,27 @@
 import { createRoot } from "react-dom/client";
-import Header from "./src/sections/Header";
-import Body from "./src/sections/Body";
-import Footer from "./src/sections/Footer";
-import Store from "./store/Store";
+import Store from "./src/store/Store.js";
+import Home from "./src/pages/Home.js";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import About from "./src/pages/About.js";
 
 const root = createRoot(document.getElementById('root'));
 
-
-
 const App = () => {
 
-    return (
-        <Store>
-            <Header />
-            <Body />
-            <Footer />
-        </Store>
-    )
+    return (<Store>
+        <RouterProvider router={appRouter} />
+    </Store>)
 }
+
+const appRouter = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home />
+    },
+    {
+        path: "/about",
+        element: <About />
+    }
+])
 
 root.render(<App />)
