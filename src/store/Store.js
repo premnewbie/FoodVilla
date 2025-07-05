@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import getData from "../utils/getData";
+import fetchData from "../utils/fetchData";
 
 export const StoreContext = createContext(null);
 
@@ -11,12 +11,12 @@ function Store({ children }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
+    async function getData() {
       setLoading(true);
       setError(null);
 
       try {
-        const data = await getData();
+        const data = await fetchData();
         setRestaurantsList(data);
         setFilterRestaurants(data);
       } catch (err) {
@@ -27,7 +27,7 @@ function Store({ children }) {
       }
     }
 
-    fetchData();
+    getData();
   }, []);
 
   function handleSearchTerm(txt) {
