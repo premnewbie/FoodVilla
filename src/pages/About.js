@@ -4,7 +4,6 @@ import Header from '../sections/Header'
 function About() {
   return (
     <div>
-        <Header />
         <p>This is About page</p>
     </div>
   )

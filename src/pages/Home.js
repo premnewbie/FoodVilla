@@ -5,9 +5,7 @@ import Footer from "../sections/Footer";
 function Home() {
     return (
         <>
-            <Header />
             <Body />
-            <Footer />
         </>
     )
 }

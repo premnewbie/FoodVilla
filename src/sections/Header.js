@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { StoreContext } from '../store/Store';
+import { Link } from 'react-router-dom';
 
 const img_URL = "https://files.yappe.in/place/full/the-food-villa-5873411.webp";
 
@@ -15,13 +16,14 @@ function Header() {
         onChange={(e) => handleSearchTerm(e.target.value)}
         placeholder="Search restaurants"
         name="searchRestaurant"
+        id="search-bar"
       />
-      <div className='nav-links'>
-        <p className='nav-link'>Home</p>
-        <p className='nav-link'>About</p>
-        <p className='nav-link'>Contact</p>
-        <p className='nav-link'>Cart</p>
-      </div>
+      <ul className='nav-links'>
+        <li className='nav-link'><Link to='/'>Home</Link></li>
+        <li className='nav-link'><Link to="/about">About</Link></li>
+        <li className='nav-link'>Contact</li>
+        <li className='nav-link'>Cart</li>
+      </ul>
     </nav>
   );
 };
