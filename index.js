@@ -4,6 +4,9 @@ import App from "./src/App.js";
 import Home from "./src/pages/Home.js";
 import About from "./src/pages/About.js";
 import ErrorPage from "./src/pages/ErrorPage.js";
+import Contact from "./src/pages/Contact.js";
+import Cart from "./src/pages/Cart.js";
+import RestaurantPage from "./src/pages/RestaurantPage.js";
 
 const root = createRoot(document.getElementById('root'));
 
@@ -20,9 +23,21 @@ const appRouter = createBrowserRouter([
             {
                 path: "/about",
                 element: <About />
+            },
+            {
+                path: "/contact",
+                element: <Contact />
+            },
+            {
+                path: "/cart",
+                element: <Cart />
+            },
+            {
+                path: "/restaurant/:resId",
+                element: <RestaurantPage />
             }
         ]
     },
-])
+]);
 
-root.render(<RouterProvider router={appRouter} />)
+root.render(<RouterProvider router={appRouter} />);

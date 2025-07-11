@@ -15,7 +15,7 @@ body {
   align-items: center;
   padding: 5px;
   height: 80px;
-  background-color: red;
+  background-color: yellowgreen;
   position: sticky;
   top: 0;
 }
@@ -25,12 +25,12 @@ body {
   border-radius: 50%;
 }
 
-.search-bar{
+.search-bar {
   width: 75%;
 }
 
 .nav-links {
-  display:none;
+  display: none;
   gap: 30px;
   font-weight: 600;
   color: wheat;
@@ -65,13 +65,22 @@ body {
 
 .card > img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
   border: 1px solid blue;
   border-radius: 5px 5px 0px 0px;
 }
 
-.simmer{
+.restaurant-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 10px;
+}
+
+.simmer {
   background-color: rgb(190, 188, 188);
   width: 200px;
   height: 200px;
@@ -79,7 +88,25 @@ body {
 }
 
 ul {
-  list-style: none;;
+  list-style: none;
+}
+
+.restaurant-page>h2{
+  text-align: center;
+}
+
+.restaurant-page>div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.restaurant-page img,.restaurant-page .simmer{
+  width: 400px;
+}
+
+.menu-items>.menu-item{
+  margin-top: 5px;
 }
 
 @media (min-width: 576px) {
@@ -92,7 +119,7 @@ ul {
     justify-content: center;
   }
 
-  .card{
+  .card {
     width: 200px;
   }
 }

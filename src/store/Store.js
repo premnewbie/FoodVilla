@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import fetchData from "../utils/fetchData";
+import {useFetchRestaurantsData,useFetchMenuData} from "../utils/fetchData";
 
 export const StoreContext = createContext(null);
 
@@ -7,6 +7,9 @@ function Store({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
+  const [restaurantTitle,setRestaurantTitle] =  useState("");
+  const [menuItems,setMenuItems] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,7 +19,7 @@ function Store({ children }) {
       setError(null);
 
       try {
-        const data = await fetchData();
+        const data = await useFetchRestaurantsData();
         setRestaurantsList(data);
         setFilterRestaurants(data);
       } catch (err) {
@@ -29,6 +32,10 @@ function Store({ children }) {
 
     getData();
   }, []);
+
+  useEffect(() => {
+    useFetchMenuData()
+  },[])
 
   function handleSearchTerm(txt) {
     setSearchTerm(txt);
@@ -47,6 +54,7 @@ function Store({ children }) {
     searchTerm,
     handleSearchTerm,
     filterRestaurants,
+    restaurantsList,
     loading,
     error,
   };
