@@ -1,12 +1,14 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./src/App.js";
-import Home from "./src/pages/Home.js";
-import About from "./src/pages/About.js";
-import ErrorPage from "./src/pages/ErrorPage.js";
-import Contact from "./src/pages/Contact.js";
-import Cart from "./src/pages/Cart.js";
-import RestaurantPage from "./src/pages/RestaurantPage.js";
+import { lazy } from "react";
+
+const App = lazy(() =>  import("./src/App.js"));
+const Home = lazy(() => import('./src/pages/Home.js'));
+const About = lazy(() => import('./src/pages/About.js'));
+const ErrorPage = lazy(() => import('./src/pages/ErrorPage.js'));
+const Contact = lazy(() => import('./src/pages/Contact.js'));
+const Cart = lazy(() => import('./src/pages/Cart.js'));
+const RestaurantPage = lazy(() => import('./src/pages/RestaurantPage.js'))
 
 const root = createRoot(document.getElementById('root'));
 

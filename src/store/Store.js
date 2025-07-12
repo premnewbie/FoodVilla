@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react";
-import {useFetchRestaurantsData,useFetchMenuData} from "../utils/fetchData";
+import { useFetchRestaurantsData, useFetchMenuData } from "../utils/fetchData";
 
 export const StoreContext = createContext(null);
 
@@ -7,8 +7,8 @@ function Store({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
-  const [restaurantTitle,setRestaurantTitle] =  useState("");
-  const [menuItems,setMenuItems] = useState([]);
+  const [restaurantTitle, setRestaurantTitle] = useState("");
+  const [menuItems, setMenuItems] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,8 +20,19 @@ function Store({ children }) {
 
       try {
         const data = await useFetchRestaurantsData();
-        setRestaurantsList(data);
-        setFilterRestaurants(data);
+
+        // Deduplicate restaurants by info.id
+        const uniqueRestaurantsMap = new Map();
+        data.forEach((restaurant) => {
+          const id = restaurant?.info?.id;
+          if (id && !uniqueRestaurantsMap.has(id)) {
+            uniqueRestaurantsMap.set(id, restaurant);
+          }
+        });
+        const uniqueRestaurants = Array.from(uniqueRestaurantsMap.values());
+
+        setRestaurantsList(uniqueRestaurants);
+        setFilterRestaurants(uniqueRestaurants);
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Failed to load restaurants.");
@@ -34,8 +45,10 @@ function Store({ children }) {
   }, []);
 
   useEffect(() => {
-    useFetchMenuData()
-  },[])
+    // This looks like a data fetch but you don't set the result anywhere yet.
+    // Consider updating state once data arrives.
+    useFetchMenuData();
+  }, []);
 
   function handleSearchTerm(txt) {
     setSearchTerm(txt);
