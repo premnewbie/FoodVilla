@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { cloudinary_URL } from "../assets/Constants";
-import Simmer from "../components/Simmer";
 import { useFetchMenuData } from "../utils/fetchData";
 
 function RestaurantPage() {
@@ -19,18 +18,44 @@ function RestaurantPage() {
         console.error("Error fetching data:", err);
       }
     }
-
     getData();
   }, [resId]);
 
-  if (!resId || !Array.isArray(restaurantMenu) || restaurantMenu.length === 0) {
+  console.log(useParams())
+
+  if (restaurantMenu.length === 0) {
     return (
-      <div className="restaurant-page flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800">
-        <h2 className="text-2xl font-semibold mb-4">Loading!!! Please wait...</h2>
-        <Simmer />
+      <div className="restaurant-page max-w-5xl mx-auto py-10 px-4 bg-white">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+          ........................................
+        </h2>
+        <div className="flex flex-col md:flex-row items-start gap-8">
+
+          {/* Image Container */}
+          <div className="w-full md:w-80 flex-shrink-0">
+            <div className="rounded-lg shadow-md w-full h-64 md:h-96 bg-gray-300 object-cover"></div>
+          </div>
+
+          {/* Menu Skeleton List */}
+          <div className="flex-1 w-full">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {Array(10).fill(0).map((_, i) => (
+                <li
+                  key={i}
+                  className="menu-item p-4 bg-gray-200 rounded-lg shadow-sm hover:shadow-md transition"
+                >
+                  <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-2/4 mb-2"></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
       </div>
     );
   }
+
 
   return (
     <div className="restaurant-page max-w-5xl mx-auto py-10 px-4 bg-white">
@@ -51,7 +76,7 @@ function RestaurantPage() {
             {restaurantMenu?.map((item, index) => (
               <li
                 className="menu-item p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition"
-                key={item?.card?.info?.id+"_"+index || index}
+                key={item?.card?.info?.id || `menu-item-${index}`}
               >
                 <p className="font-medium text-lg text-gray-800">
                   {item?.card?.info?.name}

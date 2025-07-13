@@ -20,6 +20,6 @@ function RestaurantCard({ restaurant }) {
       </div>
     </Link>
   );
-}
+};
 
 export default RestaurantCard;
