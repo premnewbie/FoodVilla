@@ -3,6 +3,8 @@ import { useFetchRestaurantsData, useFetchMenuData } from "../utils/fetchData";
 
 export const StoreContext = createContext(null);
 
+StoreContext.displayName = "StoreContext";
+
 function Store({ children }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [restaurantsList, setRestaurantsList] = useState([]);
@@ -68,5 +70,7 @@ function Store({ children }) {
     </StoreContext.Provider>
   );
 }
+
+
 
 export default Store;
